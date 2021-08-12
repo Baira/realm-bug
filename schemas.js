@@ -1,0 +1,40 @@
+export const cartesSchema = {
+  name: 'cnam',
+  properties: {
+    _id: {type: 'objectId', indexed: true},
+    nMbNNI: {type: 'string', indexed: true},
+    PRENOM: 'string',
+    NOM: 'string',
+    NOM_FAMILLE: 'string',
+    DATE_NAISSANCE: 'string',
+    LIEU_NAISSANCE_FR: 'string',
+    SEXE: 'string',
+    MbId: 'string',
+    MenId: {type: 'string', indexed: true},
+    Commune: 'string',
+    Wilaya: 'string',
+    Moughataa: 'string',
+    INAM: 'string',
+    MenTelCh: 'string?',
+    ID_CARTE_CNAM: 'string',
+    user: {type: 'string', indexed: true},
+    mode: 'string?',
+    selected: 'bool?',
+    imei: 'string?',
+    latitude: 'double?',
+    longitude: 'double?',
+    updatedAt: 'date?',
+    synced: 'date?',
+  },
+  primaryKey: '_id',
+};
+
+export const usersSchema = {
+  name: 'users',
+  primaryKey: '_id',
+  properties: {
+    _id: 'objectId',
+    user: {type: 'string', indexed: true},
+    name: 'string',
+  },
+};
