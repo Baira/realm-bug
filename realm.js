@@ -16,12 +16,6 @@ function errorSync(session, error) {
   if (realm !== undefined) {
     console.log('error.name', error.name);
     if (error.name === 'ClientReset') {
-      /*       Toast.show({
-        type: 'error',
-        text1: i18n.t('sync_error'),
-        position: 'bottom',
-        visibilityTime: 10000,
-      }); */
       const oldRealmPath = realm.path;
 
       realm.close();
@@ -58,7 +52,6 @@ async function restoreRealm() {
   if (backupExists) {
     const backupRealm = await Realm.open({path: backupPath, readOnly: true});
 
-    // This is highly dependent on the structure of the data to recover
     const backupObjects = backupRealm
       .objects(schemaName)
       .filtered('updatedAt != null AND synced = null');
@@ -96,7 +89,7 @@ async function openRealm(user, phone) {
     if (TRACE_LOG) {
       Realm.App.Sync.setLogLevel(app, 'trace');
     } else {
-      Realm.App.Sync.setLogLevel(app, 'trace');
+      Realm.App.Sync.setLogLevel(app, 'off');
     }
   }
   console.log('user.id', user.id);
@@ -133,7 +126,7 @@ async function openRealm(user, phone) {
 
   realm = await Realm.open(realmConfig);
 
-  console.log('Opened realm DARI');
+  console.log('Opened realm successfully');
 
   // If a backup file exists, restore to the current realm, and delete file afterwards
   await restoreRealm();
